@@ -74,6 +74,18 @@ class DatabaseHelper {
     return await db.insert('news_articles', article);
   }
 
+  Future<int> delete(String id) async {
+    final db = await database;     // replacd with database instance
+
+    return await db.delete(
+      'news_articles',     // replace with table name
+      where: "title = ?",
+      whereArgs: [id],   // you need the id
+    );
+  }
+
+
+
   Future<int> updateArticle(int id, Map<String, dynamic> updatedData) async {
     final Database db = await database;
     return await db.update(

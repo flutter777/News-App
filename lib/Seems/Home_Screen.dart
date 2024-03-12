@@ -43,7 +43,7 @@ class _HomescreenState extends State<Homescreen> {
       'publishedAt': article.publishedAt.toString(),
     });
     _loadArticles();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('Article saved successfully'),
       duration: Duration(seconds: 2),
     ));
@@ -58,9 +58,9 @@ class _HomescreenState extends State<Homescreen> {
       future: future,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error loading data'));
+          return const Center(child: Text('Error loading data'));
         } else if (snapshot.hasData) {
           List<NewsApi.Article>? data = snapshot.data;
           return ListView.builder(
@@ -141,13 +141,15 @@ class _HomescreenState extends State<Homescreen> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          actions: [
+          actions: const [
             Icon(
               Icons.search,
               color: Colors.black,
@@ -173,7 +175,7 @@ class _HomescreenState extends State<Homescreen> {
           SliverAppBar(
             backgroundColor: Colors.white,
             expandedHeight: 250,
-            floating: false,
+            floating: true,
             pinned: true,
             flexibleSpace: FutureBuilder<List<NewsApi.Article>?>(
                 future: trendingNews,
@@ -181,7 +183,7 @@ class _HomescreenState extends State<Homescreen> {
                   try {
                     if (snapshot.connectionState ==
                         ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
                       return const Center(
                           child: Text('Error loading trending news'));
@@ -243,9 +245,8 @@ class _HomescreenState extends State<Homescreen> {
               padding: const EdgeInsets.all(8.0),
               child: TabBar(
                 indicator: BoxDecoration(
-
                     borderRadius: BorderRadius.circular(18),
-                    color: Color(0xFF4169E1)
+                    color: const Color(0xFF4169E1)
                 ),
                 unselectedLabelColor: Colors.grey,
                 isScrollable: true,
@@ -306,7 +307,7 @@ class _HomescreenState extends State<Homescreen> {
           ),
         ]),
         bottomNavigationBar: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
