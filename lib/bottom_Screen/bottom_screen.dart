@@ -1,4 +1,5 @@
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_aggregator/moor_db/db_save_page.dart';
@@ -89,7 +90,8 @@ class _BottomPageState extends State<BottomPage> {
                         );
                       },
                     );
-                  },                  onDismissed: (direction){
+                  },
+                  onDismissed: (direction){
                     if(direction==DismissDirection.endToStart){
                       setState(() {
                         databaseHelper?.delete(article['title'] );
